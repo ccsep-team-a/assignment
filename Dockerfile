@@ -1,7 +1,7 @@
 # A sample run a Flask program
 # Guide: https://blog.bitsrc.io/a-guide-to-docker-multi-stage-builds-206e8f31aeb8
 FROM python:3.8.2-alpine as build
-MAINTANER Your Name "youremail@domain.tld"
+MAINTAINER Your Name "youremail@domain.tld"
 
 RUN apk --update add build-base 
 # Create app directory
