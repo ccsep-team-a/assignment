@@ -1,6 +1,6 @@
 # A sample Makefile to use make command to build, test and run the program
 # Guide: https://philpep.org/blog/a-makefile-for-your-dockerfiles/
-APP=isec3004.assignment
+APP=isec3004.2020.team-a.assignment
 
 all: build
 
@@ -12,7 +12,7 @@ test:
 	docker run -it --rm $(APP) python manage.py test
 
 run:
-	docker run -p 0.0.0.0:8000:8000/tcp -it --rm $(APP)
+	docker run -p 0.0.0.0:8000:8000 -it --rm $(APP):latest
 
 clean:
 	docker image rm $(APP)
