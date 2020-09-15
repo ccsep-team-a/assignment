@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM-based XSS</title>
+</head>
+<body>
+
+<h1>DOM-based XSS Demo</h1>
+<h3>innerHTML sink using source location.search</h3>
+<form action="/1" method="GET">
+	<input type="text" placeholder="Search" name="search" autocomplete="off">
+	<button type="submit" class="button">Search</button>
+</form>
+
+<br>
+<span id="searchQuery"></span>
+
+
+
+<script>	
+	function doSearchQuery(query) {
+		document.getElementById('searchQuery').innerHTML = "Search result for " + query;	
+	}
+	
+	var query = (new URLSearchParams(window.location.search)).get('search');
+	
+	if(query) {
+		doSearchQuery(query);
+	}
+</script>
+
+
+
+
+</body>
+<html>
