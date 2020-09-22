@@ -24,9 +24,13 @@
 	</header>
 	
 	{% for product in products %}
-	<div class="product">
-		<!--<img src="{{ url_for('static', filename='image1_1.jpg')}}" width="100" height="100"/>-->
-		<div class="productImg"><img class="img" src="../static/image1_1.jpg"/></div>
+	<div class="product">	
+		<div class="productImg">
+		<script>
+		    var product = '{{ product.id }}';	
+	        document.write("<img class='img' src='../static/image" + product + "_1.jpg'/>");		    
+		</script>
+		</div>
 		<div class="description">
 			<span class="pname">{{ product.name }}</span>
 			<span class="price"><h3><h3>${{ product.price }}</h3></h3></span>
