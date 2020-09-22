@@ -2,8 +2,11 @@ FROM python:3.8.2-alpine as build
 LABEL maintainer jactacular
 RUN apk --update add build-base 
 COPY src/ /app
+
+# TODO: Move tests to seperate docker image
+COPY test/ /app
 WORKDIR /app
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt --disable-pip-version-check
 
 ENV FLASK_APP app.py
 
