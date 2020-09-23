@@ -9,7 +9,7 @@ build:
 	docker image prune -f
 
 test:
-	docker run -p 0.0.0.0:8000:8000 -it --rm $(APP):latest pytest
+	docker run -p 0.0.0.0:8000:8000 -it --rm $(APP):latest pytest -v
 
 run:
 	docker run -p 0.0.0.0:8000:8000 -it --rm $(APP):latest
