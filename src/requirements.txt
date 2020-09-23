@@ -1,1 +1,5 @@
 Flask == 1.1.2
+Flask-SQLAlchemy
+
+# TODO: Move to seperate build
+pytest == 6.0.2

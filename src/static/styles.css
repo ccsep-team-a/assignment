@@ -1,0 +1,187 @@
+body {
+  font-family: "proxima-nova",sans-serif;
+  padding-bottom: 5em; }
+
+.border {
+  height: 6px;
+  border: 0;
+  background-color: red;
+  background-image: linear-gradient(to right, #fd7576, #fd7576 25%, #fec85d 25%, #fec85d 50%, #4db8de 50%, #4db8de 75%, #a378fc 75%, #a378fc 100%, #a378fc 100%);
+  -webkit-background-size: 50% 100%;
+  -moz-background-size: 50% 100%;
+  background-size: 50% 100%; }
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+  
+.wrapper {
+  width: 750px;
+  max-width: 90%;
+  margin: 0 auto; }
+
+.main_header {
+  margin: 3em 0 2em 0; }
+
+
+.logo h1 {
+  float: left;
+  margin: 0 0 0 1em;
+  text-transform: uppercase;
+  font-size: 1.35em;
+  padding-top: 0.5em;
+  color: #34324b; }
+  .logo h1 span {
+    font-weight: 400; }
+
+
+
+#headerlink {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    float: right;
+    width: 100%;
+
+}
+
+ul#headerlink li {
+    float: right;
+	
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 13px;
+    text-decoration: none;
+	
+}
+
+li a:hover{
+    background-color: silver;
+	
+}
+
+
+.product {
+	display: inline-block;
+	width: 47.65%;
+	height: 150px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 15px;
+	margin-right: 1%;
+	margin-left: 1%;
+	position: relative;
+}
+
+
+.productImg {
+	display: inline-block;
+	width: 40%;
+	height: 100%;
+	position: relative;
+}
+
+.img{
+	width: 100%;
+	height: 100%;
+}
+
+.description {
+	
+	width: 58%;
+	height: 100%;
+	position: relative;
+	float: right;
+	margin-top: 4px;
+}
+
+
+.pname {
+	font-weight: bold;
+}
+
+.price {
+	color: #f57224;
+	font-size: 17px;
+
+}
+
+
+.button {
+    border-radius: 25px;
+    user-select: none;
+    background-color: #115f82;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 7px 1em;
+    text-align: center;
+    text-decoration: none !important;
+    white-space: nowrap;
+    min-width: 120px;
+}
+
+
+
+
+
+
+
+.product2 {
+	width: 100%;
+	height: 250px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.color {
+	display: inline-block;
+	width: 15%;
+	border: solid black 1px;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,9 +19,13 @@ Original Docs moved to original branch
 
 === Usage
 
+==== Start in Development Mode
 * Build: $ make all
-* Run: $ make run
+* Run:   $ make run
 
+==== Run Tests
+* Build: $ make all
+* Test:  $ make test
 
 == Submission checklist
 

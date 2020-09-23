@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SHOPII</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css', version=12) }}">
+	<link rel="stylesheet" href="../static/styles.css">
+</head>
+
+
+
+
+<body>
+<div class="border"></div>
+<div class="wrapper">
+	<header class="main_header clearfix">
+		<div class="logo">
+			<a href="{{ url_for('index') }}"><h1>Shopii</h1></a>
+		</div>
+	  
+		<ul id="headerlink">
+			<li><a class="active" href="{{ url_for('about') }}">About Us</a></li>
+			<li><a class="active" href="{{ url_for('search') }}">Search Product</a></li>
+		</ul>
+	</header>
+	
+	{% for product in products %}
+	<div class="product">	
+		<div class="productImg">
+		<script>
+		    var product = '{{ product.id }}';	
+	        document.write("<img class='img' src='../static/image" + product + "_1.jpg'/>");		    
+		</script>
+		</div>
+		<div class="description">
+			<span class="pname">{{ product.name }}</span>
+			<span class="price"><h3><h3>${{ product.price }}</h3></h3></span>
+			<a href="{{ url_for('product', product=product.id) }}"><button class="button">View details</button></a>
+		</div>
+	</div>
+	{% endfor %}
+
+</div>
+</body>
+</html>

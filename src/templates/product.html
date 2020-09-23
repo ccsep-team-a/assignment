@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SHOPII</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css', version=12) }}">
+	<link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<script
+      src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+</script>
+
+<script>
+	function chooseColor(num) {
+		var product = '{{ product.id }}';
+	
+	
+		var html = "<img class='img' src='../static/image" + product + "_" + num + ".jpg'/>";
+		$('#productImg').html(html);
+		
+
+		$('#color').html(color);
+		window.location.hash = num;
+      	}
+      	
+      	window.onload = function() { 
+      		refresh();
+        }
+        
+        window.onhashchange = function() {
+ 		refresh();
+	}
+	
+	function refresh(){
+		var product = '{{ product.id }}';    		
+      		if(product){
+      			chooseColor(unescape(self.location.hash.substr(1)) || "1");
+      		}
+	}
+      	
+      	
+      	
+</script>
+
+<body>
+<div class="border"></div>
+<div class="wrapper">
+	<header class="main_header clearfix">
+		<div class="logo">
+			<a href="{{ url_for('index') }}"><h1>Shopii</h1></a>
+		</div>
+	  
+		<ul id="headerlink">
+			<li><a class="active" href="{{ url_for('about') }}">About Us</a></li>
+			<li><a class="active" href="{{ url_for('search') }}">Search Product</a></li>
+		</ul>
+	</header>
+
+
+	<div class="product2">
+		<!--<img src="{{ url_for('static', filename='image1_1.jpg')}}" width="100" height="100"/>-->
+		<div class="productImg" id="productImg"></div>
+		<div class="description">
+			<span class="pname" id="pname">{{ product.name }}</span>
+			<span class="price" id="price"><h3>${{ product.price }}</h3></span>
+			<div class="color" id="tab1" onclick="chooseColor('1')">Black</div>
+			<div class="color" id="tab2" onclick="chooseColor('2')">White</div>
+			<div class="color" id="tab3" onclick="chooseColor('3')">Red</div>
+			<br>
+			<div id="color"></div>		
+			<button class="button">Buy Now</button></a>
+		</div>
+	</div>
+
+
+</div>
+</body>
+</html>
