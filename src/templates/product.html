@@ -11,21 +11,22 @@
 <script>
 	function chooseColor(num) {
 		var product = '{{ product.id }}';
-	
-	
+		
+		num = encodeURI(num);
+		
 		var html = "<img class='img' src='../static/image" + product + "_" + num + ".jpg'/>";
 		$('#productImg').html(html);
 		
 
 		window.location.hash = num;
-      	}
+    }
       	
-      	window.onload = function() { 
-      		refresh();
-        }
-        
-        window.onhashchange = function() {
- 		refresh();
+  	window.onload = function() { 
+  		refresh();
+    }
+    
+    window.onhashchange = function() {
+	    refresh();
 	}
 	
 	function refresh(){
@@ -68,6 +69,9 @@
 			<script>
                 var stores = ["Bentley","Sydney","Melbourne"];
                 var store = (new URLSearchParams(window.location.search)).get('store');
+                
+                store = encodeURI(store);
+                
                 document.write('<select name="store">');
                 if(store) {
                     document.write('<option selected>'+store+'</option>');

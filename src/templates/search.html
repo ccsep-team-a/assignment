@@ -50,7 +50,7 @@
 
 <script>
 	function doSearchQuery(query) {
-		document.getElementById('searchQuery').innerHTML = "Search result for " + query;	
+		document.getElementById('searchQuery').innerText = "Search result for " + query;	
 	}
 	
 	var query = (new URLSearchParams(window.location.search)).get('q');
