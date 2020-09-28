@@ -66,6 +66,9 @@ These three payloads contain javascript. The scripts are stored within the dom a
 
 ==== How to Patch
 
+DOM based XSS vulnerabilities occur when untrusted data is from the dom is used without adequate validation or escaping. The vulnerabilities have been removed on the https://github.com/ccsep-team-a/assignment/tree/patch[patch branch] by improving the sanitisation used in the html templates for the vulnerable pages. 
+
+This was done by introducing the use of javascript's https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI[encodeURI function], and changing the use of https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML[innerHTML] to https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/innerText[innerText]. These changes can be seen explicitly in https://github.com/ccsep-team-a/assignment/commit/5703686a432bf712b9e1ae235fbec6d341800f85[this commit].
 
 === License
 
