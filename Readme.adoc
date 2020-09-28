@@ -62,7 +62,7 @@ Three DOM based XSS vulnerabilities exist in the master branch of the webapp. Al
 These three payloads contain javascript. The scripts are stored within the dom and cannot be santitised by operations on the server, the sanitising must be pre-emptively written into the served data. When the requested page is served, the javascript written on the page will be executed. If it interacts with the malicious data stored in the dom, and does not adequately sanitise it, then the payloads can be run. Each payload demonstrates a different entry point that an attacker may exploit. For detection, the payload scripts simply cause a browser alert popup, this demonstrates a manipulation of the dom. 
 
 ==== How to Exploit 
-
+An attacker can exploit this vulnerability by passing malicious javascript code into the url. An attacker may alter the page via this method to introduce a purchase button on the product page. Upon clicking the purchase button, the user could be redirected to a new webpage where they may disclose sensitive information without realising they are no longer interacting with the online retailer.
 
 ==== How to Patch
 
