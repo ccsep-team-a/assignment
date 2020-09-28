@@ -45,13 +45,13 @@ body {
     padding: 0;
     overflow: hidden;
     background-color: black;
-    float: right;
+    float: left;
     width: 100%;
 
 }
 
 ul#headerlink li {
-    float: right;
+    float: left;
 	
 }
 

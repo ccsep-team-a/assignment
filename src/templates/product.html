@@ -2,13 +2,11 @@
 <html>
 <head>
 	<title>SHOPII</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css', version=12) }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css', version=100) }}">
 	<link rel="stylesheet" href="../static/styles.css">
 </head>
 
-<script
-      src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script>
 	function chooseColor(num) {
@@ -19,7 +17,6 @@
 		$('#productImg').html(html);
 		
 
-		$('#color').html(color);
 		window.location.hash = num;
       	}
       	
@@ -51,7 +48,7 @@
 		</div>
 	  
 		<ul id="headerlink">
-			<li><a class="active" href="{{ url_for('about') }}">About Us</a></li>
+			<li><a class="active" href="{{ url_for('index') }}">Home</a></li>
 			<li><a class="active" href="{{ url_for('search') }}">Search Product</a></li>
 		</ul>
 	</header>
@@ -63,16 +60,68 @@
 		<div class="description">
 			<span class="pname" id="pname">{{ product.name }}</span>
 			<span class="price" id="price"><h3>${{ product.price }}</h3></span>
-			<div class="color" id="tab1" onclick="chooseColor('1')">Black</div>
-			<div class="color" id="tab2" onclick="chooseColor('2')">White</div>
-			<div class="color" id="tab3" onclick="chooseColor('3')">Red</div>
+			<div class="color" onclick="chooseColor('1')">Black</div>
+			<div class="color" onclick="chooseColor('2')">White</div>
+			<div class="color" onclick="chooseColor('3')">Red</div>
 			<br>
-			<div id="color"></div>		
-			<button class="button">Buy Now</button></a>
+			<input required="" type="hidden" name="productID" value="{{ product.id }}">	
+			<script>
+                var stores = ["Bentley","Sydney","Melbourne"];
+                var store = (new URLSearchParams(window.location.search)).get('store');
+                document.write('<select name="store">');
+                if(store) {
+                    document.write('<option selected>'+store+'</option>');
+                }
+                for(var i=0;i<stores.length;i++) {
+                    if(stores[i] === store) {
+                        continue;
+                    }
+                    document.write('<option>'+stores[i]+'</option>');
+                }
+                document.write('</select>');
+                
+                
+            </script>
+            <button id="checkStock" class="button">Check stock</button>    
+            <div id="result"></div>
 		</div>
 	</div>
-
-
 </div>
+
+<script>
+    $(function() {
+        $('#checkStock').bind('click', function() {        
+            get_stock();          
+        });
+    });
+    
+    var store = (new URLSearchParams(window.location.search)).get('store');
+    if(store){
+        get_stock();
+    }
+    
+    
+    function get_stock(){
+    
+        $.getJSON('/_check_stock', {
+            productID: $('input[name="productID"]').val(),
+            store: $('select[name="store"]').val(),
+          }, function(data) {
+            $("#result").text(data.result);
+          });
+          return false;
+    }
+    
+    
+    
+  
+  
+
+  
+  
+  
+  
+  
+</script>
 </body>
 </html>

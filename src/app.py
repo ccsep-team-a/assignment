@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask import request
 import os
@@ -30,8 +30,19 @@ def create_app(test_config=None):
 	    
 	    def all_products():
 		    return Product.query.all()
-		
-		
+		    
+		    
+    class Store(db.Model):
+	    id = db.Column(db.Integer, primary_key=True)
+	    name = db.Column(db.String(50))
+	    
+    class Stock(db.Model):
+        
+        pid = db.Column(db.Integer, primary_key=True)
+        sid = db.Column(db.Integer, primary_key=True)
+        stock_count = db.Column(db.Integer)
+        
+        
     @app.route("/")
     def index():
 	    products = Product.all_products()
@@ -61,11 +72,21 @@ def create_app(test_config=None):
         id = request.values.get('product')
         product = Product.query.filter_by(id=id).first()
         return render_template('product.html', product=product)
-    
-    
-    @app.route("/about")
-    def about():
-        return "123"
+        
+    @app.route('/_check_stock')
+    def check_stock():
+        pid = request.args.get('productID', 0, type=int)
+        store = request.args.get('store')     
+        
+        store = Store.query.filter_by(name=store).first()        
+        stock = Stock.query.filter_by(pid=pid,sid=store.id).first()
+        
+        return jsonify(result=stock.stock_count)
+ 
+
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template("404.html"), 404
 
     return app
     
