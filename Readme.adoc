@@ -1,43 +1,70 @@
-== CCSEP ASSIGNMENT
-* Group: Team A
-* Vulnerability: DOM Based XSS 
---
-Current webapp is just the structure for using flask with docker. 
---
+= CCSEP ASSIGNMENT 
 
-[NOTE]
---
-Original Docs moved to original branch 
---
+== Team A - DOM Based XSS 
+
+=== Program Description
+
+A simple flask application for customers to search for and view clothing products provided by a fictional online retailer SHOPII. 
+
+Home Page:
+
+* The customer can see all products available from the store.
+
+Search Page: 
+
+* The customer can enter a search term and select search.
+* The results will be populated, and further information on the products can be viewed by selecting 'View details'.
+
+Product Page:
+
+* If the customer Selects 'View details' on a product on the Search page, they will be directed here.
+* The customer can view the product image in a larger format.
+* The customer can select a store and check the stock levels of the product at that store.
+* The customer can select alternative colours of the  
 
 
-=== Requires
+=== How to Run the Program
+
+==== Requirements
 
 * Docker
-* Python 3.8
 * Make
 
-=== Usage
+==== Usage
 
-==== Start in Development Mode
-* Build: $ make all
-* Run:   $ make run
+Results of tests will be displayed as command line outputs.
 
-==== Run Tests
-* Build: $ make all
-* Test:  $ make test
+===== Build, Test & Run the Development Server
 
-== Submission checklist
+* $ make all
 
-* [ ] Reviewed the assignment Rubrics in BB.
-* [ ] Demo program repository is linked in the presentation.
-* [ ] Tests cover program functionality tests.
-* [ ] A patched version of the program is created in the patch branch.
-* [ ] The patched program passes all tests.
-* [ ] `Readme` is updated with program description, how to run the program, how to detect, exploit and patch the bug.
-* [ ] Unnecessary template files and guides are removed.
-* [ ] Presentation is submitted to BB.
-* [ ] Presentation video recording is shared with the unit instructor.
+* Open http://localhost:8000/[localhost] 
+
+===== Build & Test
+* $ make build test
+
+==== DOM Based XSS Vulnerability
+
+===== How to Detect
+
+Three DOM based XSS vulnerabilities exist in the master branch of the webapp. All are three can be detected by requesting the following URL's from the server: 
+
+* Product Page: use of the non-encoded hash from the url to set shirt colour from the client.
+** Intended Behaviour: http://localhost:8000/product?product=1#2[http://localhost:8000/product?product=1#2]
+** Detection Payload: http://localhost:8000/product?product=1#1'%20onerror='alert(1);//[http://localhost:8000/product?product=1#1' onerror='alert(1);//]
+* Search Page: use of a non-encoded query parameter to find and load result image.
+** Intended Behaviour: http://localhost:8000/search?q=T-Shirt[http://localhost:8000/search?q=T-Shirt] 
+** Detection Payload: http://localhost:8000/search?q=%3Cimg%20src=%22%22%20onerror=alert(1)>[http://localhost:8000/search?q=<img src="" onerror=alert(1)>]
+* Product Page: use of a non-encoded parameter 'store' to check stock levels of a product.
+** Intended Behaviour: http://localhost:8000/product?product=1&store=Perth[http://localhost:8000/product?product=1&store=Perth]
+** Detection Payload: http://localhost:8000/product?product=1&store=</select><img%20src=1%20onerror=alert(1)>[http://localhost:8000/product?product=1&store=</select><img%20src=1%20onerror=alert(1)>]
+
+These three payloads contain javascript. The scripts are stored within the dom and cannot be santitised by operations on the server, the sanitising must be pre-emptively written into the served data. When the requested page is served, the javascript written on the page will be executed. If it interacts with the malicious data stored in the dom, and does not adequately sanitise it, then the payloads can be run. Each payload demonstrates a different entry point that an attacker may exploit. For detection, the payload scripts simply cause a browser alert popup, this demonstrates a manipulation of the dom. 
+
+==== How to Exploit 
+
+
+==== How to Patch
 
 
 === License

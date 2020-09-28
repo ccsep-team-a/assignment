@@ -1,30 +1,6 @@
-# Guide: https://flask.palletsprojects.com/en/1.1.x/testing/
-# https://stackoverflow.com/questions/17375340/testing-code-that-requires-a-flask-app-or-request-context
-import os
-import tempfile
+# fixtures setup in ./conftest.py
 import flask
-import pytest
-from app import create_app
 
-
-@pytest.fixture
-def client():
-    app = create_app({"TESTING": True})
-    db_fd, app.config['DATABASE'] = tempfile.mkstemp()
-
-    with app.test_client() as client:
-        # with app.app_context():
-        #     app.init_db()
-        yield client
-
-    os.close(db_fd)
-    os.unlink(app.config['DATABASE'])
-
-@pytest.fixture
-def app_fixture():
-    app = create_app({"TESTING": True})
-    _, app.config['DATABASE'] = tempfile.mkstemp()
-    return app
 
 # Functionality Tests
 def test_errorhandlers(client):
