@@ -69,15 +69,15 @@
 			<script>
                 var stores = ["Perth","Sydney","Melbourne"];
                 var store = (new URLSearchParams(window.location.search)).get('store');
-                
-                store = encodeURI(store);
-                
+                            
                 document.write('<select name="store">');
                 if(store) {
-                    document.write('<option selected>'+store+'</option>');
+                    store = encodeURI(store);                 
                 }
+                
                 for(var i=0;i<stores.length;i++) {
                     if(stores[i] === store) {
+                        document.write('<option selected>'+store+'</option>');
                         continue;
                     }
                     document.write('<option>'+stores[i]+'</option>');
