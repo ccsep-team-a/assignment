@@ -10,7 +10,7 @@ WORKDIR /app
 COPY src/requirements.txt .
 
 # install app dependencies
-RUN pip install -r requirements.txt --disable-pip-version-check
+RUN pip install -r requirements.txt --trusted-host pypi.org --disable-pip-version-check
 
 # copy source files
 COPY src/ .
